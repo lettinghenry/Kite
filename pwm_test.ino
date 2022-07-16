@@ -1,7 +1,7 @@
 //Parameters
 const int escPin = 9;
 int min_throttle = 1000;
-int max_throttle = 2000;
+int max_throttle = 2200;
 unsigned long currentMillis, previousMillis;
 void setup() {
  //Init Serial USB
@@ -19,10 +19,10 @@ void runBrushless() { /* function runBrushless */
  Serial.println("running");
  currentMillis = 0;
  previousMillis = millis();
- while (currentMillis < 2000) {
+ while (currentMillis < 2200) {
    currentMillis = millis() - previousMillis;
    digitalWrite(escPin, HIGH);
-   delayMicroseconds(1350);
+   delayMicroseconds(1850);
    digitalWrite(escPin, LOW);
    delay(20);
  }
