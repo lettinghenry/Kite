@@ -1,14 +1,20 @@
 //Parameters
-const int escPin = 6;
+const int escPin1 = 6;
+const int escPin2 = 9;
+const int escPin3 = 10;
+const int escPin4 = 11;
 int min_throttle = 1000;
-int max_throttle = 2200;
+int max_throttle = 2000;
 unsigned long currentMillis, previousMillis;
 void setup() {
  //Init Serial USB
  Serial.begin(9600);
  Serial.println(F("Initialize System"));
  //Init ESC
- pinMode(escPin, OUTPUT);
+ pinMode(escPin1, OUTPUT);
+ pinMode(escPin2, OUTPUT);
+ pinMode(escPin3, OUTPUT);
+ pinMode(escPin4, OUTPUT);
  initProcedure();
 }
 void loop() {
@@ -21,19 +27,31 @@ void runBrushless() { /* function runBrushless */
  previousMillis = millis();
  while (currentMillis < 2000) {
    currentMillis = millis() - previousMillis;
-   digitalWrite(escPin, HIGH);
-   delayMicroseconds(2100);
-   digitalWrite(escPin, LOW);
+   digitalWrite(escPin1, HIGH);
+   digitalWrite(escPin2, HIGH);
+   digitalWrite(escPin3, HIGH);
+   digitalWrite(escPin4, HIGH);
+   delayMicroseconds(1800);
+   digitalWrite(escPin1, LOW);
+   digitalWrite(escPin2, LOW);
+   digitalWrite(escPin3, LOW);
+   digitalWrite(escPin4, LOW);
    delay(20);
  }
  Serial.println("stop");
  currentMillis = 0;
  previousMillis = millis();
- while (currentMillis < 2000) {
+ while (currentMillis < 1000) {
    currentMillis = millis() - previousMillis;
-   digitalWrite(escPin, HIGH);
+   digitalWrite(escPin1, HIGH);
+   digitalWrite(escPin2, HIGH);
+   digitalWrite(escPin3, HIGH);
+   digitalWrite(escPin4, HIGH);
    delayMicroseconds(min_throttle);
-   digitalWrite(escPin, LOW);
+   digitalWrite(escPin1, LOW);
+   digitalWrite(escPin2, LOW);
+   digitalWrite(escPin3, LOW);
+   digitalWrite(escPin4, LOW);
    delay(20);
  }
 }
@@ -44,9 +62,15 @@ void initProcedure() { /* function initProcedure */
  while (currentMillis < 3000) {
    currentMillis = millis() - previousMillis;
    Serial.println(currentMillis);
-   digitalWrite(escPin, HIGH);
+   digitalWrite(escPin1, HIGH);
+   digitalWrite(escPin2, HIGH);
+   digitalWrite(escPin3, HIGH);
+   digitalWrite(escPin4, HIGH);
    delayMicroseconds(max_throttle);
-   digitalWrite(escPin, LOW);
+   digitalWrite(escPin1, LOW);
+    digitalWrite(escPin2, LOW);
+     digitalWrite(escPin3, LOW);
+      digitalWrite(escPin4, LOW);
    delay(20);
  } //beep- beep-
  currentMillis = 0;
@@ -55,9 +79,15 @@ void initProcedure() { /* function initProcedure */
  while (currentMillis < 4500) {
    currentMillis = millis() - previousMillis;
    Serial.println(currentMillis);
-   digitalWrite(escPin, HIGH);
+   digitalWrite(escPin1, HIGH);
+   digitalWrite(escPin2, HIGH);
+   digitalWrite(escPin3, HIGH);
+   digitalWrite(escPin4, HIGH);
    delayMicroseconds(min_throttle);
-   digitalWrite(escPin, LOW);
+   digitalWrite(escPin1, LOW);
+   digitalWrite(escPin2, LOW);
+   digitalWrite(escPin3, LOW);
+   digitalWrite(escPin4, LOW);
    delay(20);
  } // beep--
  // 1 2 3
